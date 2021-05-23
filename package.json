@@ -1,0 +1,28 @@
+{
+  "name": "storxy",
+  "version": "0.1.0",
+  "description": "Stupid simple state manger based on proxies",
+  "main": "dist/storxy.js",
+  "module": "dist/storxy.ems.js",
+  "cdn": "dist/storxy.min.js",
+  "unpkg": "dist/storxy.min.js",
+  "scripts": {
+    "build": "node esbuild",
+    "build:dev": "node esbuild --dev",
+    "test": "npm run build:dev && node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexxNB/storxy.git"
+  },
+  "author": "Alexey Schebelev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexxNB/storxy/issues"
+  },
+  "homepage": "https://github.com/AlexxNB/storxy#readme",
+  "devDependencies": {
+    "esbuild": "^0.12.1",
+    "uvu": "^0.5.1"
+  }
+}
