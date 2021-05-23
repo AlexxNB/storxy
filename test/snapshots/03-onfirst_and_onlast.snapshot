@@ -1,0 +1,16 @@
+> Creating store
+> First subscriber
+I'm run on first subscriber
+Subscriber1: 0
+> Change store value
+Subscriber1: 1
+> Second subscriber
+Subscriber2: 1
+> Change store value
+Subscriber1: 10
+Subscriber2: 10
+> Destroy first subscriber
+> Change store value
+Subscriber2: 20
+> Destroy second subscriber
+I'm run when no subscribers left

@@ -1,0 +1,15 @@
+> Creating store with {}
+> Add a subscriber
+Subscriber: {}
+> Add property a:0
+Subscriber: { a: 0 }
+> Change property a:1
+Subscriber: { a: 1 }
+> Add property b:{foo:"bar"}
+Subscriber: { a: 1, b: { foo: 'bar' } }
+> Change property b.foo:BAR
+Subscriber: { a: 1, b: { foo: 'BAR' } }
+> Add property b.foo.arr:[1,2,3]}
+Subscriber: { a: 1, b: { foo: 'BAR', arr: [ 1, 2, 3 ] } }
+> Change property b.foo.arr:[1,2,3,4]}
+Subscriber: { a: 1, b: { foo: 'BAR', arr: [ 1, 2, 3, 4 ] } }
