@@ -18,14 +18,37 @@ export function store(initial,onfirst){
         if(onlast && !listeners.size && isFunc(onlast)) onlast();
     }
 
-    storxy.subscribe = fn => {
+    storxy.subscribe = (fn, prevent) => {
         if(!listeners.size) onlast = isFunc(onfirst) ? onfirst() : null;
         listeners.add(fn);
-        fn(storxy.$);
+        if(!prevent) fn(storxy.$);
         return () => unsubscribe(fn);
     }
 
     storxy.$$ = storxy.subscribe;
     
     return storxy;
+}
+
+export function computed(deps,fn){
+    let run;
+    let unsubscribers = [];   
+
+    if(!deps || (!deps.length && !deps.subscribe)) return store();
+
+    const derived = store(undefined,()=>{
+        let once = false;
+        unsubscribers.push((deps.length ? deps : [deps]).forEach( d => d.subscribe(run,true)));
+        return ()=>{
+            unsubscribers.forEach(un => un());
+            unsubscribers = [];
+        }
+    });
+
+    run = ()=>{
+        derived.$ = fn(deps.length ? deps.map( d => d.$) : deps.$);
+    }
+    run();
+
+    return derived;    
 }

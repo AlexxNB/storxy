@@ -1,0 +1,13 @@
+> Creating first store
+> Creating second store
+> Creating computed store with one dependency
+> Creating computed store with list of dependencies
+> Subscribe for doubleStore
+Double: 20
+> Subscribe for multipleStore
+Multiple: 50
+> Change value of firstStore
+Double: 30
+Multiple: 75
+> Change value of secondStore
+Multiple: 375

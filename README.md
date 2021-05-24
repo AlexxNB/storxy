@@ -70,8 +70,26 @@ const myStore = store(0,()=>{
     console.log("I will run before number of subscribers will change from 0 to 1");
     return ()=>console.log("I will run after number of subscribers will change from 1 to 0");
 });
-
 ```
+
+## Computed stores
+
+You can create a computed store which will use a value of other store and will be updated each time its value be updated.
+
+```js
+import {store,computed} from 'storxy';
+
+const number1 = store(5);
+const number2 = store(10);
+
+const doubleFirst = computed(number1, value => value*2);
+
+const multipleBoth = computed([number1,number2], ([value1,value2])=>{
+  return value1*value2;
+});
+```
+
+It has same `API` as a `store`. So you can `subscribe` for updates and get current store value from `$` property.
 
 ## Using with frameworks
 
