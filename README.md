@@ -1,6 +1,6 @@
 # storxy
 
-Stupid simple state manager based on proxies
+Stupid simple state manager based on proxies. It is very tiny, just 500 bytes of none zipped code, but looks like a magic.
 
 ## Inspiration
 
@@ -121,3 +121,86 @@ The Malina framework works smoothly with `storxy` API:
 <button on:click={() => counter.$ = 0}>Reset</button>
 ```
 > See live example [here](https://malinajs.github.io/repl/#/share/60ab502ca59a5a00156e4e06)
+
+## Vue
+
+You should manually handle subscription. To change store's value just use `store.$`.
+
+```html
+<template>
+  <div>
+    <h1>Count: {{ count }}</h1>
+
+    <button @click="increment()">+</button>
+    <button @click="decrement()">-</button>
+
+    <button @click="reset()">Reset</button>
+  </div>
+</template>
+
+<script>
+import { counter } from "./stores.js";
+
+export default {
+  name: "App",
+
+  data() {
+    return {
+      count: counter.$,
+    }
+  },
+
+  created() {
+    this.un = counter.$$( $ => this.count = );
+  },
+
+  beforeDestroy() {
+    this.un();
+  },
+
+  methods: {
+    increment: counter.increment,
+    decrement: counter.decrement,
+    reset() {
+      counter.$ = 0;
+    }
+  }
+}
+</script>
+```
+> See live example [here](https://codesandbox.io/s/storxy-example-hyubg)
+
+Also you may use Vue's object watcher with `storxy`, but in this case component will not subscribe for store changes. In this case _on-first_ and _on-last_ hooks will not be called when component will be rendered. 
+
+```html
+<template>
+  <div>
+    <h1>Count: {{ counter.$ }}</h1>
+
+    <button @click="counter.increment()">+</button>
+    <button @click="counter.decrement()">-</button>
+
+    <button @click="reset()">Reset</button>
+  </div>
+</template>
+
+<script>
+import { counter } from "./stores.js";
+
+export default {
+  name: "App",
+
+  data() {
+    return {
+      counter
+    }
+  },
+
+  methods: {
+    reset() {
+      counter.$ = 0;
+    }
+  }
+}
+</script>
+```
