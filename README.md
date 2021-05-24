@@ -50,9 +50,9 @@ myStore.decrement = ()=>myStore.$--;
 myStore.subscribe(value => console.log('Count:',value));
 
 // Use your custom methods
-myStore.increment(); // 1
-myStore.increment(); // 2
-myStore.decrement(); // 1
+myStore.increment(); // Count: 1
+myStore.increment(); // Count: 2
+myStore.decrement(); // Count: 1
 
 ```
 > Don't rewrite `subscribe`,`$$` and `$` methods – store will be broken in this case.
@@ -67,8 +67,57 @@ import {store} from 'storxy';
 
 // Create a store with callback in second argument
 const myStore = store(0,()=>{
-    console.log("I will run when number of subscribers will change from 0 to 1");
-    return ()=>console.log("I will run when number of subscribers will change from 1 to 0");
+    console.log("I will run before number of subscribers will change from 0 to 1");
+    return ()=>console.log("I will run after number of subscribers will change from 1 to 0");
 });
 
 ```
+
+## Using with frameworks
+
+Let's create a simple custom store which we can use in any framework:
+
+```js
+// stores.js
+import {store} from 'storxy';
+
+export const counter = store(0);
+counter.increment = () => counter.$++;
+counter.decrement = () => counter.$--;
+```
+
+### Svelte
+
+Just use as internal Svelte's store or any Observable-like object, to get a value of the store. But set and update store's value using `storxy` API:
+
+```html
+<!-- App.svelte -->
+<script>
+    import {counter} from './stores.js';
+</script>
+
+<h1>Count: {$counter}</h1>
+
+<button on:click={counter.increment}>+</button>
+<button on:click={counter.decrement}>-</button>
+<button on:click={() => counter.$ = 0}>Reset</button>
+```
+> See live example [here](https://svelte.dev/repl/81ebb80c70f346fdb348be6472280e60)
+
+### Malina.js
+
+The Malina framework works smoothly with `storxy` API:
+
+```html
+<!-- App.xht -->
+<script>
+    import {counter} from './stores.js';
+</script>
+
+<h1>Count: {counter.$}</h1>
+
+<button on:click={counter.increment}>+</button>
+<button on:click={counter.decrement}>-</button>
+<button on:click={() => counter.$ = 0}>Reset</button>
+```
+> See live example [here](https://malinajs.github.io/repl/#/share/60ab502ca59a5a00156e4e06)
