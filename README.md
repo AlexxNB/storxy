@@ -177,7 +177,7 @@ export default {
   },
 
   created() {
-    this.un = counter.$$( $ => this.count = );
+    this.un = counter.$$( $ => this.count = $ );
   },
 
   beforeDestroy() {
