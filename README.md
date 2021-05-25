@@ -145,7 +145,7 @@ The Malina framework works smoothly with `storxy` API:
 ```
 > See live example [here](https://malinajs.github.io/repl/#/share/60ab502ca59a5a00156e4e06)
 
-## Vue
+### Vue
 
 You should manually handle subscription. To change store's value just use `store.$`.
 
