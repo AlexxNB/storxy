@@ -1,7 +1,7 @@
 # storxy
 
 
-  <img align="right" src="https://github.com/AlexxNB/storxy/raw/main/branding/storxy_logo.svg">
+  <img align="right" src="https://raw.githubusercontent.com/AlexxNB/storxy/master/branding/storxy_logo.svg"/>
 
 
 
