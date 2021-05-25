@@ -5,11 +5,11 @@
 
 
 
-Stupid simple state manager based on proxies. It is very tiny, just 500 bytes of none zipped code, but looks like a magic.
+Tiny simple state manager based on proxies. Just 800 bytes of non-zipped code, but looks like a magic.
 
 ## Inspiration
 
-This state manager provides a store which was inspired by `writable` store from Svelte and `reactive()` function from Vue3. Store has `$` property, which you can read and write. When you change the value of this property, all subscribers will get updated state value.
+This state manager provides a store which was inspired by `writable` store from [Svelte](https://svelte.dev) and `reactive()` function from [Vue3](https://vuejs.org). Store has `$` property, which you can _read_ and _write_. Whenever you change the value of this property, all subscribers will get updated state value.
 
 ## Usage
 
@@ -72,14 +72,18 @@ import {store} from 'storxy';
 
 // Create a store with callback in second argument
 const myStore = store(0,()=>{
+
     console.log("I will run before number of subscribers will change from 0 to 1");
-    return ()=>console.log("I will run after number of subscribers will change from 1 to 0");
+
+    return ()=>{
+      console.log("I will run after number of subscribers changed from 1 to 0");
+    }
 });
 ```
 
 ## Computed stores
 
-You can create a computed store which will use a value of other store and will be updated each time its value be updated.
+You can create a computed store which will use a values of other stores and will be updated each time one of these stores updates.
 
 ```js
 import {store,computed} from 'storxy';
@@ -127,6 +131,7 @@ Just use as internal Svelte's store or any Observable-like object, to get a valu
 ```
 > See live example [here](https://svelte.dev/repl/81ebb80c70f346fdb348be6472280e60)
 
+
 ### Malina.js
 
 The Malina framework works smoothly with `storxy` API:
@@ -144,6 +149,7 @@ The Malina framework works smoothly with `storxy` API:
 <button on:click={() => counter.$ = 0}>Reset</button>
 ```
 > See live example [here](https://malinajs.github.io/repl/#/share/60ab502ca59a5a00156e4e06)
+
 
 ### Vue
 
@@ -193,7 +199,7 @@ export default {
 ```
 > See live example [here](https://codesandbox.io/s/storxy-example-hyubg)
 
-Also you may use Vue's object watcher with `storxy`, but in this case component will not subscribe for store changes. In this case _on-first_ and _on-last_ hooks will not be called when component will be rendered. 
+Also you may use Vue's object watcher with `storxy`, but in this case component will not subscribe for store changes. This means _on-first_ and _on-last_ hooks will not be called when the component will be rendered. 
 
 ```html
 <template>
