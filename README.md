@@ -1,5 +1,10 @@
 # storxy
 
+
+  <img align="right" src="https://github.com/AlexxNB/storxy/raw/main/branding/storxy_logo.svg">
+
+
+
 Stupid simple state manager based on proxies. It is very tiny, just 500 bytes of none zipped code, but looks like a magic.
 
 ## Inspiration
