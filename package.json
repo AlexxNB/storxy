@@ -1,6 +1,6 @@
 {
   "name": "storxy",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Stupid simple state manger based on proxies",
   "main": "dist/storxy.js",
   "module": "dist/storxy.esm.js",
