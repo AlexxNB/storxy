@@ -145,7 +145,7 @@ The Malina framework works smoothly with `storxy` API:
 <button on:click={counter.decrement}>-</button>
 <button on:click={() => counter.$ = 0}>Reset</button>
 ```
-> See live example [here](https://malinajs.github.io/repl/#/share/60ab502ca59a5a00156e4e06)
+> See live example [here](https://malinajs.github.io/repl/#/share/tp4gZWOEHuu)
 
 
 ### Vue
