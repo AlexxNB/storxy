@@ -6,7 +6,7 @@
   "module": "dist/storxy.esm.js",
   "cdn": "dist/storxy.min.js",
   "unpkg": "dist/storxy.min.js",
-  "types": "./dist/storxy.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "build": "node esbuild",
     "build:dev": "node esbuild --dev",

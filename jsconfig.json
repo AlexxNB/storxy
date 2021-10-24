@@ -1,0 +1,8 @@
+{
+    "baseURL":".",
+    "compilerOptions": {
+        "paths": {
+            "storxy": ["."],
+        }
+    }
+}
