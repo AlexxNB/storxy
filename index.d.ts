@@ -3,8 +3,8 @@
  */
 type Subscriber<T> = (value:T) => void
 type Unsubscriber = () => void
-type OnLast = () => void
-type OnFirst = () => OnLast | void
+type OnLast = (store: StorxyStore) => void
+type OnFirst = (store: StorxyStore) => OnLast | void
 type ComputedSubscriber<T> = (value:T)=>any
 
 type Stores = StorxyStore<any> | [StorxyStore<any>, ...Array<StorxyStore<any>>] | Array<StorxyStore<any>>;

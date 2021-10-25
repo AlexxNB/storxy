@@ -62,17 +62,19 @@ myStore.decrement(); // Count: 1
 
 ## First and last subscribers
 
-There a two hooks which will be run when first subscriber will be registered and when all subscribers will be removed.
+There a two hooks which will be run when first subscriber will be registered and when all subscribers will be removed. Each hook gets store's instance as a parameter, so you can change its value inside theese functions.
 
 ```js
 import {store} from 'storxy';
 
 // Create a store with callback in second argument
-const myStore = store(0,()=>{
+const myStore = store(0, st =>{
 
     console.log("I will run before number of subscribers will change from 0 to 1");
 
-    return ()=>{
+    st.$ = 100; // Set store's value to 100
+
+    return st => {
       console.log("I will run after number of subscribers changed from 1 to 0");
     }
 });

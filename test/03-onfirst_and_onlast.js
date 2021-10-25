@@ -2,8 +2,9 @@ const {store} = require('./../dist/storxy');
 
 console.log('> Creating store');
 
-const testStore = store(0,()=>{
+const testStore = store(0, store =>{
     console.log("I'm run on first subscriber");
+    store.$ = 5;
     return ()=>console.log("I'm run when no subscribers left");
 });
 

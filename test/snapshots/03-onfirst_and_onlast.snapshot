@@ -1,11 +1,11 @@
 > Creating store
 > First subscriber
 I'm run on first subscriber
-Subscriber1: 0
+Subscriber1: 5
 > Change store value
-Subscriber1: 1
+Subscriber1: 6
 > Second subscriber
-Subscriber2: 1
+Subscriber2: 6
 > Change store value
 Subscriber1: 10
 Subscriber2: 10
