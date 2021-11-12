@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Storxy Visual Tests</title>
+        <script src='./storxy.test.js'></script>
+    </head>
+
+    <style>
+        progress{width:100%}
+    </style>
+
+    <body>
+        <h1>Motion store</h1>
+        <progress value="0" max="100" id="progress_motion"></progress>
+        <div>
+            <button onclick="setValue(25)">25%</button>
+            <button onclick="setValue(50)">50%</button>
+            <button onclick="setValue(75)">75%</button>
+            <button onclick="setValue(100)">100%</button>
+        </div>
+    </body>
+
+    <script>
+        const motion = Storxy.motion(0,{duration:2000});
+
+        motion.subscribe( value => {
+            document.getElementById('progress_motion').value = value;
+        })
+
+        function setValue(value){
+            motion.$ = value;
+        }
+    </script>
+</html>

@@ -28,7 +28,7 @@ build({
     entryPoints: ['./src/index.js'],
     format: "iife",
     globalName: 'Storxy',
-    outfile: pkg.cdn,
+    outfile: DEV ? './test/visual/storxy.test.js' : pkg.cdn,
     minify: !DEV,
     sourcemap: DEV && 'inline',
     bundle: true,

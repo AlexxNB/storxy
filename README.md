@@ -99,6 +99,44 @@ const multipleBoth = computed([number1,number2], ([value1,value2])=>{
 
 It has same `API` as a `store`. So you can `subscribe` for updates and get current store value from `$` property.
 
+## Motion store
+
+In this store when you set new value it will not be setted immideatly in the store. Instead store's value will reach target value some specified time and subscribers will be called many times with intermedial values during this period.
+
+In example below, `progress` element will be animated when you set its new value:
+
+```html
+<body>
+    <progress value="0" max="100" id="progress_motion"></progress>
+    <div>
+        <button onclick="setValue(25)">25%</button>
+        <button onclick="setValue(50)">50%</button>
+        <button onclick="setValue(75)">75%</button>
+        <button onclick="setValue(100)">100%</button>
+    </div>
+</body>
+
+<script src='https://unpkg.com/storxy'></script>
+<script>
+    const motion = Storxy.motion(0,{duration:1000});
+
+    motion.subscribe( value => {
+        document.getElementById('progress_motion').value = value;
+    })
+
+    function setValue(value){
+        motion.$ = value;
+    }
+</script>
+```
+
+A `motion` store may accept options object as a second parameter. 
+* `duration` - time in milliseconds to reach new value.
+* `easing` - easing function (default is easeInOutCubic). Learn more about easing functions [here](https://easings.net). You should implement or imort this function, there no any builtin functions except default.
+* `interpolation` - function like `(from,to) => t => value` which return intermedial values for any `t`(0 to 1) parameter. By default `motion` store can interpolate only numbers (`(from,to) => t => from+(to-from)*t`) but you can interpolator for any kind of values.
+
+You may set new value for store even when motion in progress. Motion will start from curent intermedial value.
+
 ## Using with frameworks
 
 Let's create a simple custom store which we can use in any framework:

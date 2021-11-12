@@ -10,7 +10,8 @@
   "scripts": {
     "build": "node esbuild",
     "build:dev": "node esbuild --dev",
-    "test": "npm run build:dev && node test"
+    "test": "npm run build:dev && node test",
+    "test:visual": "npm run build:dev && npx derver test/visual"
   },
   "repository": {
     "type": "git",

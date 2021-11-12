@@ -1,3 +1,5 @@
+import {store} from './store';
+
 export function computed(deps,fn){
     let run;
     let unsubscribers = [];   

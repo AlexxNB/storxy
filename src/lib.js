@@ -22,3 +22,33 @@ export function proxify(obj,fn,only){
         }
     })
 }
+
+export function loop(fn){
+    let id = null;
+    let start = null;
+    let stopped = false;
+
+    const step = ()=>{id = window.requestAnimationFrame(callback)};
+    const stop = ()=>{
+        stopped=true;
+        window.cancelAnimationFrame(id);
+    }
+
+    function callback(now){
+        if(!start) start = now;
+
+        fn({
+            now,
+            start,
+            elapsed: now-start,
+            stop
+        });
+
+        !stopped && step();
+    }
+
+    step();
+    return{
+        stop
+    }
+}
