@@ -11,7 +11,7 @@
     "build": "node esbuild",
     "build:dev": "node esbuild --dev",
     "test": "npm run build:dev && node test",
-    "test:visual": "npm run build:dev && npx derver test/visual"
+    "test:visual": "npm run build:dev && derver test/visual"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/AlexxNB/storxy#readme",
   "devDependencies": {
+    "derver": "^0.5.3",
     "esbuild": "^0.12.1",
     "uvu": "^0.5.1"
   }
