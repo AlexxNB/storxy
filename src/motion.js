@@ -24,6 +24,7 @@ export function motion(initial,options){
 
     return {
         subscribe: st.subscribe,
+        $$: st.subscribe,
         get $(){return st.$},
         set $(value){
             startMotion(value);
