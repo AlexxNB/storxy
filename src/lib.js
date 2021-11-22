@@ -13,14 +13,26 @@ export function proxify(obj,fn,only){
         obj[prop] = proxify(obj[prop],fn);
     }
     
-    return new Proxy(obj,{
-        set(target,prop,value){         
+    const proxy = new Proxy(obj,{
+        set(target,prop,value){       
             if(!not_equal(target[prop],value)) return true;
             target[prop] = proxify(value,fn);
             if(!only || prop === only) fn();
             return true;
+        },
+        get(target,prop){
+            return prop=='$$target' ? target : target[prop];
         }
-    })
+    });
+    return proxy;
+}
+
+export function deproxify(proxy){
+    if(!isObject(proxy) || !proxy.$$target) return proxy;
+    for(let prop in proxy.$$target){
+        proxy.$$target[prop] = deproxify(proxy.$$target[prop]);
+    }
+    return proxy.$$target;
 }
 
 export function loop(fn){
