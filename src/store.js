@@ -1,4 +1,4 @@
-import {isFunc,proxify,deproxify} from './lib';
+import {isFunc,proxify} from './lib';
 
 export function store(initial,onfirst){
     let run;
@@ -10,8 +10,7 @@ export function store(initial,onfirst){
     },() => run(), '$' );
 
     run = () => {
-        const target = deproxify(storxy.$);
-        listeners.forEach( fn => fn(target) );
+        listeners.forEach( fn => fn(storxy.$) );
     }
 
     const unsubscribe = fn => {
@@ -22,7 +21,7 @@ export function store(initial,onfirst){
     storxy.subscribe = (fn, prevent) => {
         if(!listeners.size) onlast = isFunc(onfirst) ? onfirst(storxy) : null;
         listeners.add(fn);
-        if(!prevent) fn(deproxify(storxy.$));
+        if(!prevent) fn(storxy.$);
         return () => unsubscribe(fn);
     }
 

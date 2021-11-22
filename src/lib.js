@@ -9,6 +9,7 @@ export function not_equal(a, b) {
 export function proxify(obj,fn,only){
     if(!isObject(obj)) return obj;
 
+    const childs = {}
     for(let prop in obj){
         obj[prop] = proxify(obj[prop],fn);
     }
@@ -19,20 +20,9 @@ export function proxify(obj,fn,only){
             target[prop] = proxify(value,fn);
             if(!only || prop === only) fn();
             return true;
-        },
-        get(target,prop){
-            return prop=='$$target' ? target : target[prop];
         }
     });
     return proxy;
-}
-
-export function deproxify(proxy){
-    if(!isObject(proxy) || !proxy.$$target) return proxy;
-    for(let prop in proxy.$$target){
-        proxy.$$target[prop] = deproxify(proxy.$$target[prop]);
-    }
-    return proxy.$$target;
 }
 
 export function loop(fn){
