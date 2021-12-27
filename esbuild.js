@@ -3,33 +3,36 @@ const pkg = require('./package.json');
 
 const DEV = process.argv.includes('--dev');
 
-// Node-module
-build({
+// common to all builds
+const common = {
     entryPoints: ['./src/index.js'],
-    format: "cjs",
-    outfile: pkg.main,
     minify: !DEV,
     sourcemap: DEV && 'inline',
-    bundle: true,
-});
+    bundle: true
+}
 
-// ESM
-build({
-    entryPoints: ['./src/index.js'],
-    format: "esm",
-    outfile: pkg.module,
-    minify: !DEV,
-    sourcemap: DEV && 'inline',
-    bundle: true,
-});
+// module specific
+const builds = {
+    // Node module
+    cjs: {
+        outfile: pkg.main
+    },
+    // ES6 module
+    esm: {
+        outfile: pkg.module,
+    },
+    // Browser bundle
+    iife: {
+        globalName: 'Storxy',
+        outfile: DEV ? './test/visual/storxy.test.js' : pkg.cdn,
+    }
+};
 
-// Browser
-build({
-    entryPoints: ['./src/index.js'],
-    format: "iife",
-    globalName: 'Storxy',
-    outfile: DEV ? './test/visual/storxy.test.js' : pkg.cdn,
-    minify: !DEV,
-    sourcemap: DEV && 'inline',
-    bundle: true,
+Object.keys(builds).forEach(key => {
+    const options = {
+        ...common,
+        ...builds[key],
+        format: key
+    }
+    build(options);
 });
