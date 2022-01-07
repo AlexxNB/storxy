@@ -8,8 +8,7 @@ export function not_equal(a, b) {
 
 export function proxify(obj,fn,only){
     if(!isObject(obj)) return obj;
-
-    const childs = {}
+    
     for(let prop in obj){
         obj[prop] = proxify(obj[prop],fn);
     }
