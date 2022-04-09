@@ -12,12 +12,19 @@ export function proxify(obj,fn,only){
     for(let prop in obj){
         obj[prop] = proxify(obj[prop],fn);
     }
+
+    const run = prop => (!only || prop === only) && fn();
     
     const proxy = new Proxy(obj,{
         set(target,prop,value){       
             if(!not_equal(target[prop],value)) return true;
             target[prop] = proxify(value,fn);
-            if(!only || prop === only) fn();
+            run(prop);
+            return true;
+        },
+        deleteProperty(target, prop) {
+            delete target[prop];
+            run(prop);
             return true;
         }
     });

@@ -1,0 +1,7 @@
+> Creating store
+> Subscribe for store
+Content: { a: 1, b: 2, c: { x: 9, y: 8 } }
+> Delete property
+Content: { a: 1, c: { x: 9, y: 8 } }
+> Delete property in nest level
+Content: { a: 1, c: { y: 8 } }
