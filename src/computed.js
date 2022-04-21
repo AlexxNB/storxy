@@ -2,15 +2,14 @@ import {store} from './store';
 
 export function computed(deps,fn){
     let run;
-    let unsubscribers = [];   
 
     if(!deps || (!deps.length && !deps.subscribe)) return store();
-
+   
     const derived = store(undefined,()=>{
-        unsubscribers.push((deps.length ? deps : [deps]).forEach( d => d.subscribe(run,true)));
+        let unsubscribers = (deps.length ? deps : [deps]).map(d => d.subscribe(v=>run(v),true));
+        
         return ()=>{
             unsubscribers.forEach(un => un());
-            unsubscribers = [];
         }
     });
 
