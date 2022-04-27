@@ -15,7 +15,12 @@ export function store(initial,onfirst){
 
     const unsubscribe = fn => {
         listeners.delete(fn);
-        if(onlast && !listeners.size && isFunc(onlast)) onlast(storxy);
+        if(onlast && !listeners.size){
+            if(isFunc(onlast))
+                onlast(storxy) 
+            else if(isFunc(onlast.then))
+                onlast.then(fn=>fn(storxy))
+        }
     }
 
     storxy.subscribe = (fn, prevent) => {
