@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",                                
+      "module": "ESNext",                                
+      "rootDir": "./src",                                  
+      "moduleResolution": "Node",                                        
+      "esModuleInterop": true,   
+
+      "declaration": true,       
+      "emitDeclarationOnly": true,  
+      "declarationDir": "dist/types",   
+      
+      "forceConsistentCasingInFileNames": true,            
+      "strict": true,        
+      "skipLibCheck": false,  
+      "baseUrl": "./",                               
+      "paths": {
+        "storxy": ["."],
+      },
+    },
+    "include": ["./src/**/*"]
+  }

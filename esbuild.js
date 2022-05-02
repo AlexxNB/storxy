@@ -5,7 +5,7 @@ const DEV = process.argv.includes('--dev');
 
 // common to all builds
 const common = {
-    entryPoints: ['./src/index.js'],
+    entryPoints: ['./src/index.ts'],
     minify: !DEV,
     sourcemap: DEV && 'inline',
     bundle: true

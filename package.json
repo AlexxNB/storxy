@@ -6,9 +6,9 @@
   "module": "dist/storxy.esm.js",
   "cdn": "dist/storxy.min.js",
   "unpkg": "dist/storxy.min.js",
-  "types": "index.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "node esbuild",
+    "build": "tsc && node esbuild",
     "build:dev": "node esbuild --dev",
     "test": "npm run build:dev && node test",
     "test:visual": "npm run build:dev && derver test/visual"
