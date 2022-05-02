@@ -3,3 +3,5 @@ node_modules
 test
 src
 branding
+.*
+tsconfig.json
