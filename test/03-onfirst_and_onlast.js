@@ -1,4 +1,4 @@
-const {store} = require('./../dist/storxy');
+const {store} = require('./..');
 
 console.log('> Creating store');
 

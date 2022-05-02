@@ -1,4 +1,4 @@
-const {store} = require('./../dist/storxy');
+const {store} = require('./..');
 
 console.log('> Creating store');
 const testStore = store({a:1,b:2,c:{x:9,y:8}});
@@ -11,4 +11,3 @@ delete testStore.$.b;
 
 console.log('> Delete property in nest level');
 delete testStore.$.c.x;
-
