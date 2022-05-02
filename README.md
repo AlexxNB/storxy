@@ -34,8 +34,17 @@ un();
 
 Store's instance provides `subscribe` method where you should pass a callback-function which will get current store's state value. This function will be called each time state changes. Also there is short alias for this method `$$`. You may add any number of subscribers.
 
+```js
+myStore.subscribe( newStoreValue => console.log(newStoreValue) );
+```
+
 The `subscribe` method (and `$$`) returns function which you may call when need to cancel subscription.
 
+When second argument of subscribe method has value `true`, this will prevent calling callback right on subscription, only when value will change.
+
+```js
+myStore.subscribe( newStoreValue => console.log(newStoreValue), true );
+```
 
 ## Custom stores
 
