@@ -13,7 +13,7 @@ export interface StorxyStore<T>{
  * @param callback callback which will be called each time when store's value changes
  * @param preventRunOnSubscribe if true, will not run callback on subscription with current value, only when value will be changed
 */
-export type SubscribeFn<T> = (callback:SubscribeCallback<T>, preventRunOnSubscribe:boolean)=>UnsubscribeFn;
+export type SubscribeFn<T> = (callback:SubscribeCallback<T>, preventRunOnSubscribe?:boolean)=>UnsubscribeFn;
 
 /** Call this callback each time store's value changes */
 export type SubscribeCallback<T> = (value:T)=>void;
