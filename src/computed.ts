@@ -1,5 +1,5 @@
 import {store} from './store';
-import type {StorxyStore, SubscribeFn,UnsubscribeFn} from './store';
+import type {StorxyStore, UnsubscribeFn} from './store';
 
 /** Store or array of stores */
 type Stores = StorxyStore<any> | StorxyStore<any>[];

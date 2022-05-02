@@ -15,7 +15,7 @@ interface MotionOptions<T> {
  * @param x number from 0 to 1
  * @returns indermedial value between start and end according current x value
 */
-type InterpolateFn<T> = (start:T,end:T)=>(x:number)=>T;
+export type InterpolateFn<T> = (start:T,end:T)=>(x:number)=>T;
 
 /** Easing function.
  * @param x value from 0 to 1
@@ -23,7 +23,7 @@ type InterpolateFn<T> = (start:T,end:T)=>(x:number)=>T;
  * @default easeInOutCubic
  * @see https://easings.net
 */
-type EasingFn = (x:number)=>number;
+export type EasingFn = (x:number)=>number;
 
 /** Simple number interpolation function */
 const interpolate:InterpolateFn<number> = function(start,end){

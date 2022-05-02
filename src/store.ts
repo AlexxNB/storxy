@@ -16,7 +16,7 @@ export interface StorxyStore<T>{
 export type SubscribeFn<T> = (callback:SubscribeCallback<T>, preventRunOnSubscribe:boolean)=>UnsubscribeFn;
 
 /** Call this callback each time store's value changes */
-type SubscribeCallback<T> = (value:T)=>void;
+export type SubscribeCallback<T> = (value:T)=>void;
 
 /** Call this function when no more subscribers  */
 type LastSubscriberFn<T> = (store:StorxyStore<T>)=>void;
